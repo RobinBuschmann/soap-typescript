@@ -1,0 +1,36 @@
+{
+  "name": "soap-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && mocha --reporter spec 'test/specs/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobinBuschmann/soap-typescript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobinBuschmann/soap-typescript/issues"
+  },
+  "homepage": "https://github.com/RobinBuschmann/soap-typescript#readme",
+  "dependencies": {
+    "@types/chai": "3.4.34",
+    "@types/es6-shim": "0.31.32",
+    "@types/mocha": "2.2.33",
+    "@types/reflect-metadata": "0.0.5",
+    "@types/soap": "0.0.30",
+    "chai": "3.5.0",
+    "es6-shim": "0.35.2",
+    "mocha": "3.2.0",
+    "reflect-metadata": "0.1.8",
+    "soap": "git+https://github.com/RobinBuschmann/node-soap.git#v0.18.0-beta",
+    "xml-typescript": "git+https://github.com/RobinBuschmann/xml-typescript.git#v1.0.0-beta"
+  },
+  "devDependencies": {
+    "typescript": "2.0.10"
+  }
+}

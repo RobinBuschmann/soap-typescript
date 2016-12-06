@@ -1,0 +1,21 @@
+# mac
+*.DS_Store
+
+# ide
+.idea
+
+# libraries
+node_modules
+
+# testing
+coverage
+
+# documentation
+documentation
+
+# js files
+#**/*.js
+#**/*.js.map
+
+# logs
+npm-debug.log
