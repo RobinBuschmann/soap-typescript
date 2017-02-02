@@ -8,20 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var WSDLComplexType_1 = require("../../annotations/WSDLComplexType");
-var WSDLElement_1 = require("../../annotations/WSDLElement");
+var XSDComplexType_1 = require("../../lib/annotations/XSDComplexType");
+var XSDElement_1 = require("../../lib/annotations/XSDElement");
 var ExampleResponseData = (function () {
     function ExampleResponseData() {
     }
-    __decorate([
-        WSDLElement_1.WSDLElement, 
-        __metadata('design:type', String)
-    ], ExampleResponseData.prototype, "result", void 0);
-    ExampleResponseData = __decorate([
-        WSDLComplexType_1.WSDLComplexType, 
-        __metadata('design:paramtypes', [])
-    ], ExampleResponseData);
     return ExampleResponseData;
 }());
+__decorate([
+    XSDElement_1.XSDElement,
+    __metadata("design:type", String)
+], ExampleResponseData.prototype, "result", void 0);
+ExampleResponseData = __decorate([
+    XSDComplexType_1.XSDComplexType
+], ExampleResponseData);
 exports.ExampleResponseData = ExampleResponseData;
 //# sourceMappingURL=ExampleResponseData.js.map

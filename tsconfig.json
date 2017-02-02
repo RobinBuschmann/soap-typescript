@@ -7,18 +7,19 @@
     "declaration": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "pretty": true
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "pretty": true,
+    "lib": ["es6"]
   },
   "include": [
-    "annotations/**/*",
-    "interfaces/**/*",
-    "models/**/*"
+    "lib/**/*",
+    "test/**/*"
   ],
   "files": [
-    "utils"
+    "index.ts"
   ],
   "exclude": [
-    "node_modules",
-    "documentation"
+    "node_modules"
   ]
 }

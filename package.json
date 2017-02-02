@@ -1,11 +1,12 @@
 {
-  "name": "soap-typescript",
+  "name": "soap-decorators",
   "version": "1.0.0",
-  "description": "",
+  "description": "SOAP decorators for creating wsdl's and annotating services to provide metadata for node-soap",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && mocha --reporter spec 'test/specs/**/*.js'"
+    "pretest": "npm run build",
+    "test": "mocha 'test/specs/**/*.js'"
   },
   "repository": {
     "type": "git",
@@ -17,20 +18,24 @@
     "url": "https://github.com/RobinBuschmann/soap-typescript/issues"
   },
   "homepage": "https://github.com/RobinBuschmann/soap-typescript#readme",
+  "peerDependencies": {
+    "soap": "^0.17.0",
+    "reflect-metadata": "^0.1.8"
+  },
   "dependencies": {
-    "@types/chai": "3.4.34",
-    "@types/es6-shim": "0.31.32",
-    "@types/mocha": "2.2.33",
     "@types/reflect-metadata": "0.0.5",
     "@types/soap": "0.0.30",
-    "chai": "3.5.0",
     "es6-shim": "0.35.2",
-    "mocha": "3.2.0",
-    "reflect-metadata": "0.1.8",
-    "soap": "git+https://github.com/RobinBuschmann/node-soap.git#v0.18.0-beta",
-    "xml-typescript": "git+https://github.com/RobinBuschmann/xml-typescript.git#v1.0.0-beta"
+    "xml-decorators": "1.0.1"
   },
   "devDependencies": {
-    "typescript": "2.0.10"
+    "@types/chai": "3.4.34",
+    "@types/mocha": "2.2.33",
+    "@types/xml2json": "0.10.0",
+    "chai": "3.5.0",
+    "mocha": "3.2.0",
+    "tslint": "4.4.2",
+    "typescript": "2.1.5",
+    "xml2json": "0.11.0"
   }
 }

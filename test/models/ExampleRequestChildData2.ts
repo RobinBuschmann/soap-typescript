@@ -1,10 +1,12 @@
 import {XSDComplexType} from "../../lib/annotations/XSDComplexType";
 import {XSDElement} from "../../lib/annotations/XSDElement";
 
-@XSDComplexType
-export class ExampleResponseData {
+@XSDComplexType({
+  name: 'ChildType'
+})
+export class ExampleRequestChildData2 {
 
   @XSDElement
-  result: string;
+  value: string;
 
 }

@@ -1,20 +1,37 @@
 import 'es6-shim';
 import {expect} from 'chai';
-import {WSDLDefinitions} from "../../models/wsdl/WSDLDefinitions";
-import {XMLElement} from "xml-typescript/models/XMLElement";
+import * as parser from 'xml2json';
 import {ExampleController} from "../controllers/ExampleController";
+import {createWsdl} from "../../index";
+import {WSDLDefinitions} from "../../lib/models/wsdl/WSDLDefinitions";
 
 
-describe('ExampleController', () => {
+describe('getWSDLDefinitions()', () => {
 
-  it('should be able to create a wsdl without errors', () => {
+  it('should create a valid schema with expected values', () => {
 
-    const wsdlDefinition = WSDLDefinitions.getWSDLDefinitions(ExampleController, false);
-    const xml = XMLElement.serialize('wsdl:definitions', wsdlDefinition);
+    const schema = WSDLDefinitions.getWSDLDefinitions(ExampleController.prototype);
 
-    expect(xml).not.to.be.undefined;
-    expect(typeof xml).to.equal('string');
-  })
+    expect(schema['schema']['elements']).to.have.property('length', 2);
+
+    expect(() => createWsdl(ExampleController)).not.to.throw;
+  });
 
 });
 
+describe('createWsdl()', () => {
+
+  it('should not throw', () => {
+
+    expect(() => createWsdl(ExampleController)).not.to.throw;
+  });
+
+  it('should be able to create a valid wsdl', () => {
+
+    const result = createWsdl(ExampleController);
+
+    expect(() => parser.toJson(result)).not.to.throw;
+    expect(typeof result).to.equal('string');
+  });
+
+});
