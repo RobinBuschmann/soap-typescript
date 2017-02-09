@@ -33,7 +33,7 @@ export class CalculatorResult {
 }
 ```
 For a more advanced usage of creating xsd schemas with decorators 
-see xsd-decorators.
+see [xsd-decorators](https://github.com/RobinBuschmann/xsd-decorators).
 
 ### Soap service and operations
 Define soap service, its operations and specify input and output 
