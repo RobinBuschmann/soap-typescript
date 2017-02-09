@@ -48,7 +48,6 @@
     "supertest": "3.0.0",
     "tslint": "4.4.2",
     "typescript": "2.1.5",
-    "xml2js": "0.4.17",
-    "xml2json": "0.11.0"
+    "xml2js": "0.4.17"
   }
 }
