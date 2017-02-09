@@ -9,17 +9,17 @@ import {CalculatorInput} from "../models/CalculatorInput";
 export class CalculatorController {
 
   @SoapOperation(CalculatorResult)
-  add(data: CalculatorInput, req: (res: CalculatorResult) => any): void {
+  add(data: CalculatorInput, res: (res: CalculatorResult) => any): void {
 
-    req({
+    res({
       value: data.a + data.b
     });
   }
 
   @SoapOperation(CalculatorResult)
-  subtract(data: CalculatorInput, req: (res: CalculatorResult) => any): void {
+  subtract(data: CalculatorInput, res: (res: CalculatorResult) => any): void {
 
-    req({
+    res({
       value: data.a - data.b
     });
   }

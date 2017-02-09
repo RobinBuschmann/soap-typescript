@@ -15,9 +15,9 @@ export const OPERATION_A_RESULT = 'hello-world';
 export class ExampleController {
 
   @SoapOperation(ExampleResponseData)
-  operationA(data: ExampleRequestData, req: (res: ExampleResponseData) => any): void {
+  operationA(data: ExampleRequestData, res: (res: ExampleResponseData) => any): void {
 
-    req({
+    res({
       result: OPERATION_A_RESULT
     });
   }
