@@ -1,6 +1,5 @@
-import {XSDComplexType} from "../../lib/annotations/XSDComplexType";
-import {XSDElement} from "../../lib/annotations/XSDElement";
-import {XSDAttribute} from "../../lib/annotations/XSDAttribute";
+import {XSDComplexType, XSDElement, XSDAttribute} from "../../index";
+
 
 @XSDComplexType({
   prefix: 'Super',

@@ -1,7 +1,6 @@
-import {XSDComplexType} from "../../lib/annotations/XSDComplexType";
-import {XSDElement} from "../../lib/annotations/XSDElement";
 import {ExampleRequestChildData} from "./ExampleRequestChildData";
 import {ExampleRequestChildData2} from "./ExampleRequestChildData2";
+import {XSDComplexType, XSDElement} from "../../index";
 
 @XSDComplexType
 export class ExampleRequestData {
@@ -13,7 +12,7 @@ export class ExampleRequestData {
     minOccurs: 1,
     maxOccurs: 1
   })
-  exampleEnum: string;
+  exampleEnum: 'A'|'B'|'C';
 
   @XSDElement
   exampleNum: number;
@@ -32,19 +31,19 @@ export class ExampleRequestData {
   @XSDElement({
     choiceName: ExampleRequestData.Choice
   })
-  exampleChoice1: string;
+  exampleChoice1?: string;
 
   @XSDElement({
     choiceName: ExampleRequestData.Choice
   })
-  exampleChoice2: string;
+  exampleChoice2?: string;
 
   @XSDElement
-  exampleChild: ExampleRequestChildData;
+  exampleChild?: ExampleRequestChildData;
 
   @XSDElement({
-    arrayType: ExampleRequestChildData2
+    type: ExampleRequestChildData2
   })
-  exampleChild2: ExampleRequestChildData2[];
+  exampleChild2?: ExampleRequestChildData2[];
 
 }

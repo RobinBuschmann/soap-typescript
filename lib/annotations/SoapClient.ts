@@ -1,6 +1,7 @@
-import {SOAPClient} from "../models/client/SOAPClient";
+import {SOAPClient} from "../models/SOAPClient";
+import {ISoapClientOptions} from "../interfaces/ISoapClientOptions";
 
-export function SoapClient(options: any): any {
+export function SoapClient(options: ISoapClientOptions): any {
 
   return (target: any, key: string) =>  {
 

@@ -4,21 +4,24 @@
     "target": "es5",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "declaration": true,
     "sourceMap": true,
+    "noUnusedLocals": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "noUnusedLocals": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": true,
     "pretty": true,
     "lib": ["es6"]
   },
   "include": [
-    "lib/**/*"
+    "services/**/*",
+    "controllers/**/*"
   ],
   "files": [
-    "index.ts"
+    "apps.ts"
   ],
   "exclude": [
-    "node_modules"
+    "../node_modules",
+    "../lib"
   ]
 }

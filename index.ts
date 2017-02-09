@@ -1,24 +1,22 @@
-import {WSDLDefinitions} from "./lib/models/wsdl/WSDLDefinitions";
-import {xml} from 'xml-decorators';
+export {WSDLDefinitions} from "./lib/models/WSDLDefinitions";
 
-export {IFullXSDElementOptions} from './lib/interfaces/IFullXSDElementOptions';
 export {ISoapServiceOptions} from './lib/interfaces/ISoapServiceOptions';
-export {IWSDLChoiceOptions} from './lib/interfaces/IXSDChoiceOptions';
-export {IXSDComplexTypeOptions} from './lib/interfaces/IXSDComplexTypeOptions';
-export {IXSDElementOptions} from './lib/interfaces/IXSDElementOptions';
-export {IXSDAttributeTypeReqOptions} from './lib/interfaces/IXSDAttributeTypeReqOptions';
-export {IXSDAttributeOptions} from './lib/interfaces/IXSDAttributeOptions';
+export {ISoapOptions} from './lib/interfaces/ISoapOptions';
 
 export {SoapClient} from './lib/annotations/SoapClient';
 export {SoapOperation} from './lib/annotations/SoapOperation';
 export {SoapService} from './lib/annotations/SoapService';
 
-export {XSDComplexType} from './lib/annotations/XSDComplexType';
-export {XSDElement} from './lib/annotations/XSDElement';
-export {XSDAttribute} from './lib/annotations/XSDAttribute';
+export {soap} from './lib/express-middleware'
 
-export function createWsdl(_class: any): string {
-  const wsdlDefinition = WSDLDefinitions.getWSDLDefinitions(_class.prototype, false);
+export {createWsdl, getWsdlDefinitions} from './lib/soap-decorators';
 
-  return xml.serialize('wsdl:definitions', wsdlDefinition);
-}
+// xsd-decorators
+export {
+  XSDAttribute,
+  XSDElement,
+  XSDComplexType,
+  IXSDAttributeOptions,
+  IXSDElementOptions,
+  IXSDComplexTypeOptions,
+} from 'xsd-decorators';

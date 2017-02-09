@@ -1,18 +1,24 @@
-import {SoapService} from "../../lib/annotations/SoapService";
-import {SoapOperation} from "../../lib/annotations/SoapOperation";
+import {SoapService, SoapOperation} from "../../index";
 import {ExampleResponseData} from "../models/ExampleResponseData";
 import {ExampleRequestData} from "../models/ExampleRequestData";
 
+export const SERVICE_NAME = 'ExampleService';
+export const PORT_NAME = 'ExampleService';
+export const TARGET_NAMESPACE = 'http://example.controller.com';
+export const OPERATION_A_RESULT = 'hello-world';
+
 @SoapService({
-  path: '/example',
-  portName: 'ExamplePort',
-  serviceName: 'ExampleService',
-  targetNamespace: 'http://example.controller.com'
+  portName: PORT_NAME,
+  serviceName: SERVICE_NAME,
+  targetNamespace: TARGET_NAMESPACE
 })
 export class ExampleController {
 
   @SoapOperation(ExampleResponseData)
-  operationA(data: ExampleRequestData): void {
+  operationA(data: ExampleRequestData, req: (res: ExampleResponseData) => any): void {
 
+    req({
+      result: OPERATION_A_RESULT
+    });
   }
 }

@@ -1,4 +1,4 @@
-import {WSDLDefinitions} from "../models/wsdl/WSDLDefinitions";
+import {WSDLDefinitions} from "../models/WSDLDefinitions";
 
 export function SoapOperation(responseDataType: any): any {
 

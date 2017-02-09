@@ -1,5 +1,5 @@
 import {ISoapServiceOptions} from "../interfaces/ISoapServiceOptions";
-import {WSDLDefinitions} from "../models/wsdl/WSDLDefinitions";
+import {WSDLDefinitions} from "../models/WSDLDefinitions";
 
 export function SoapService(options: ISoapServiceOptions): any {
 

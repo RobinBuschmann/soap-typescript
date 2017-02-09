@@ -1,5 +1,4 @@
-import {XSDComplexType} from "../../lib/annotations/XSDComplexType";
-import {XSDElement} from "../../lib/annotations/XSDElement";
+import {XSDComplexType, XSDElement} from "../../index";
 
 @XSDComplexType({
   name: 'ChildType'
