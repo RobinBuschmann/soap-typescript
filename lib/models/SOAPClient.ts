@@ -32,7 +32,7 @@ export class SOAPClient {
 
         if (!client[operation]) throw new Error(`Unknown operation "${operation}"`);
 
-        return xml.getSchemaAsync(args);
+        return xml.getSchemaAsync(args, {attrContainerName: 'attributes'});
       })
       .then(_args => new Promise((resolve, reject) => {
         client[operation](_args,
