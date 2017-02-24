@@ -1,6 +1,6 @@
 {
   "name": "soap-decorators",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SOAP decorators for creating wsdl's and annotating services to provide metadata for node-soap",
   "main": "index.js",
   "scripts": {
