@@ -31,7 +31,7 @@
     "es6-shim": "0.35.2",
     "express-soap": "1.0.3",
     "xml-decorators": "1.0.5",
-    "xsd-decorators": "1.0.1"
+    "xsd-decorators": "1.0.2"
   },
   "devDependencies": {
     "@types/chai": "3.4.34",

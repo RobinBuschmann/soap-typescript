@@ -7,3 +7,9 @@ test
 .DS_Store
 .idea
 example
+
+*.ts
+*.js.map
+!*.d.ts
+
+
