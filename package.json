@@ -22,14 +22,15 @@
     "express": "^4.0.0"
   },
   "peerDependencies": {
-    "soap": "^0.17.0",
+    "soap": "^0.24.0",
     "reflect-metadata": "^0.1.8"
   },
   "dependencies": {
     "@types/reflect-metadata": "0.0.5",
     "@types/soap": "0.0.30",
     "es6-shim": "0.35.2",
-    "express-soap": "1.0.3",
+    "express-soap": "1.1.0",
+    "lodash": "4.17.5",
     "xml-decorators": "1.0.5",
     "xsd-decorators": "1.0.2"
   },
@@ -40,11 +41,11 @@
     "@types/supertest": "2.0.0",
     "@types/xml2js": "0.0.32",
     "@types/xml2json": "0.10.0",
-    "soap": "0.18.0",
-    "reflect-metadata": "0.1.8",
     "chai": "3.5.0",
     "express": "4.14.1",
     "mocha": "3.2.0",
+    "reflect-metadata": "0.1.12",
+    "soap": "0.24.0",
     "supertest": "3.0.0",
     "tslint": "4.4.2",
     "typescript": "2.1.5",

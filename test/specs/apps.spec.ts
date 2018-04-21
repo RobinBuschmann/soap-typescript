@@ -147,7 +147,7 @@ apps.forEach(app => {
                   expect(result).not.to.be.undefined;
                   expect(result).to.be.an('object');
 
-                  const operationAResult = result['soap:Envelope']['soap:Body'][0]['ExampleResponseData'][0]['result'][0];
+                  const operationAResult = result['soap:Envelope']['soap:Body'][0]['tns:ExampleResponseData'][0]['result'][0];
                   expect(operationAResult).to.equal(OPERATION_A_RESULT);
 
                   resolve();
