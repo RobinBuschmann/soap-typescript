@@ -2,7 +2,7 @@ import 'es6-shim';
 import {expect} from 'chai';
 import {parseString} from 'xml2js';
 import * as request from 'supertest';
-import {OPERATION_A_RESULT, ExampleController} from "../controllers/ExampleController";
+import {OPERATION_A_RESULT, ExampleController, OPERATION_B_RESULT} from "../controllers/ExampleController";
 import {SOAP_PATH} from "../apps";
 import {ExampleRequestData} from "../models/ExampleRequestData";
 import {apps} from "../apps";
@@ -14,12 +14,12 @@ const EXAMPLE_REQUEST_DATA: ExampleRequestData = {
   exampleChoice1: 'choice1',
   exampleEnum: 'B'
 };
-const XML = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+const getXML = (operationName: string) => `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
    <soapenv:Header/>
    <soapenv:Body>
-      <operationA>
+      <${operationName}>
       	${Object.keys(EXAMPLE_REQUEST_DATA).map(key => `<${key}>${EXAMPLE_REQUEST_DATA[key]}</${key}>`).join('')}
-      </operationA>
+      </${operationName}>
    </soapenv:Body>
 </soapenv:Envelope>`;
 
@@ -87,12 +87,13 @@ apps.forEach(app => {
 
       describe('operationA', () => {
 
+        const OPERATION_NAME = 'operationA';
         const originalOperationA: any = ExampleController.prototype.operationA;
 
         it('should result in http status ok', () =>
           request(app.value)
             .post(SOAP_PATH)
-            .send(XML)
+            .send(getXML(OPERATION_NAME))
             .expect(200)
         );
 
@@ -108,7 +109,7 @@ apps.forEach(app => {
 
           return request(app.value)
             .post(SOAP_PATH)
-            .send(XML)
+            .send(getXML(OPERATION_NAME))
             .expect(200)
             .then(() => {
 
@@ -135,7 +136,7 @@ apps.forEach(app => {
 
           return request(app.value)
             .post(SOAP_PATH)
-            .send(XML)
+            .send(getXML(OPERATION_NAME))
             .expect(200)
             .then((data) =>
 
@@ -149,6 +150,80 @@ apps.forEach(app => {
 
                   const operationAResult = result['soap:Envelope']['soap:Body'][0]['tns:ExampleResponseData'][0]['result'][0];
                   expect(operationAResult).to.equal(OPERATION_A_RESULT);
+
+                  resolve();
+                })
+              )
+            );
+        });
+
+      });
+
+      describe('operationB', () => {
+
+        const originalOperationB: any = ExampleController.prototype.operationB;
+        const OPERATION_NAME = 'operationB';
+
+        it('should result in http status ok', () =>
+          request(app.value)
+            .post(SOAP_PATH)
+            .send(getXML(OPERATION_NAME))
+            .expect(200)
+        );
+
+        it('should pass xml data correctly to controller operation function', () => {
+
+          let data: ExampleRequestData;
+
+          ExampleController.prototype.operationB = (_data: ExampleRequestData, ...args: any[]) => {
+
+            data = _data;
+            return originalOperationB(_data, ...args);
+          };
+
+          return request(app.value)
+            .post(SOAP_PATH)
+            .send(getXML(OPERATION_NAME))
+            .expect(200)
+            .then(() => {
+
+              expect(data).not.to.be.undefined;
+              expect(data).not.to.be.an.instanceOf(ExampleRequestData);
+
+              Object
+                .keys(EXAMPLE_REQUEST_DATA)
+                .forEach(key => {
+
+                  const srcValue = EXAMPLE_REQUEST_DATA[key];
+                  const resultValue = data[key];
+
+                  expect(resultValue).to.be.a(typeof srcValue);
+                  expect(resultValue).to.equal(srcValue);
+                });
+
+              ExampleController.prototype.operationB = originalOperationB;
+            });
+        });
+
+        it(`should result in "${OPERATION_B_RESULT}"`, () => {
+
+
+          return request(app.value)
+            .post(SOAP_PATH)
+            .send(getXML(OPERATION_NAME))
+            .expect(200)
+            .then((data) =>
+
+              new Promise(resolve =>
+
+                parseString(data.text, (err, result) => {
+
+                  expect(err).to.be.null;
+                  expect(result).not.to.be.undefined;
+                  expect(result).to.be.an('object');
+
+                  const operationBResult = result['soap:Envelope']['soap:Body'][0]['tns:ExampleResponseData'][0]['result'][0];
+                  expect(operationBResult).to.equal(OPERATION_B_RESULT);
 
                   resolve();
                 })

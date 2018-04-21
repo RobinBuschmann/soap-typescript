@@ -90,7 +90,7 @@ describe('getWsdlDefinitions()', () => {
 
   it('should have correct messages', () => {
 
-    const expectedMessageCount = operationKeys.length * 2;
+    const expectedMessageCount = operationKeys.length + 1;
     expect(wsdlDefinitions['messages']).to.have.property('length', expectedMessageCount);
 
     operationKeys.forEach(operationKey => {
