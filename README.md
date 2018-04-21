@@ -48,17 +48,17 @@ import {SoapService, SoapOperation} from 'soap-decorators';
 export class CalculatorController {
 
   @SoapOperation(CalculatorResult)
-  add(data: CalculatorInput, res: (res: CalculatorResult) => any): void {
+  add(data: CalculatorInput) {
 
-    res({
+    return {
       value: data.a + data.b
-    });
+    };
   }
 
   @SoapOperation(CalculatorResult)
-  subtract(data: CalculatorInput, res: (res: CalculatorResult) => any): void {
+  subtract(data: CalculatorInput) {
 
-    res({
+    return Promise.resolve({
       value: data.a - data.b
     });
   }
@@ -203,17 +203,4 @@ import {createWsdl} from 'soap-decorators';
 const instance = new CalculatorController();
 
 createWsdl(instance) === createWsdl(CalculatorController);
-```
-
-## Limitations
-Complex type annotated classes can currently only work as interfaces.
-So that the data, which gets passed to a soap operation, is not mapped
-to the corresponding complex type annotated class. That means that
-```typescript
-
-  @SoapOperation(CalculatorResult)
-  add(data: CalculatorInput, req: (res: CalculatorResult) => any): void {
-
-    console.log(data instanceof CalculatorInput); // => false !!
-  }
 ```

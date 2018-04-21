@@ -5,7 +5,6 @@ import * as request from 'supertest';
 import {OPERATION_A_RESULT, ExampleController} from "../controllers/ExampleController";
 import {SOAP_PATH} from "../apps";
 import {ExampleRequestData} from "../models/ExampleRequestData";
-import {ExampleResponseData} from "../models/ExampleResponseData";
 import {apps} from "../apps";
 
 const EXAMPLE_REQUEST_DATA: ExampleRequestData = {
@@ -88,7 +87,7 @@ apps.forEach(app => {
 
       describe('operationA', () => {
 
-        const originalOperationA = ExampleController.prototype.operationA;
+        const originalOperationA: any = ExampleController.prototype.operationA;
 
         it('should result in http status ok', () =>
           request(app.value)
@@ -101,10 +100,10 @@ apps.forEach(app => {
 
           let data: ExampleRequestData;
 
-          ExampleController.prototype.operationA = (_data: ExampleRequestData, req: (res: ExampleResponseData) => any) => {
+          ExampleController.prototype.operationA = (_data: ExampleRequestData, ...args: any[]) => {
 
             data = _data;
-            originalOperationA(_data, req);
+            return originalOperationA(_data, ...args);
           };
 
           return request(app.value)
@@ -114,6 +113,7 @@ apps.forEach(app => {
             .then(() => {
 
               expect(data).not.to.be.undefined;
+              expect(data).not.to.be.an.instanceOf(ExampleRequestData);
 
               Object
                 .keys(EXAMPLE_REQUEST_DATA)

@@ -15,10 +15,9 @@ export const OPERATION_A_RESULT = 'hello-world';
 export class ExampleController {
 
   @SoapOperation(ExampleResponseData)
-  operationA(data: ExampleRequestData, res: (res: ExampleResponseData) => any): void {
-
-    res({
+  operationA(data: ExampleRequestData): ExampleResponseData {
+    return {
       result: OPERATION_A_RESULT
-    });
+    };
   }
 }
