@@ -6,8 +6,7 @@ import {ISoapClientOptions} from "../interfaces/ISoapClientOptions";
 export class SOAPClient {
 
   static process(options: ISoapClientOptions, target: any, key: string): void {
-
-    options = Object.assign({}, options);
+    options = {...options};
 
     const clientWrapper = target[key] = {};
     const createClientPromise = this.createClient(options);
@@ -35,8 +34,8 @@ export class SOAPClient {
         return xml.getSchemaAsync(args, {attrContainerName: 'attributes'});
       })
       .then(_args => new Promise((resolve, reject) => {
-        client[operation](_args,
-          (err, data) => {
+        (client[operation] as Function)(_args,
+          (err: any, data: any, headers: any, raw: any) => {
 
             if (err) {
               reject(err);
@@ -63,7 +62,7 @@ export class SOAPClient {
       createClient(
         options.wsdlPath + '?wsdl',
         options,
-        (err, client: Client) => {
+        (err: any, client: Client) => {
 
           if (err) {
 
