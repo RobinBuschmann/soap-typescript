@@ -159,7 +159,7 @@ apps.forEach(app => {
 
       });
 
-      describe('operationB', () => {
+      describe('operationB (promise based)', () => {
 
         const originalOperationB: any = ExampleController.prototype.operationB;
         const OPERATION_NAME = 'operationB';
