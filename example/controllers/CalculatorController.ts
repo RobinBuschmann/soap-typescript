@@ -17,7 +17,7 @@ export class CalculatorController {
   }
 
   @SoapOperation(CalculatorResult)
-  subtract(data: CalculatorInput, res: (res: CalculatorResult) => any): Promise<CalculatorResult> {
+  subtract(data: CalculatorInput): Promise<CalculatorResult> {
 
     return Promise.resolve({
       value: data.a - data.b
